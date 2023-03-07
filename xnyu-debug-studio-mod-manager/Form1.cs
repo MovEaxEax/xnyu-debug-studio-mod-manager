@@ -81,7 +81,7 @@ namespace xnyu_debug_studio_mod_manager
                 string name = combobox_online_install.SelectedItem.ToString();
                 string link = availableOnlineMods.getLink(name);
                 string version = availableOnlineMods.getVersion(name);
-                if (version != "")
+                if (installedOnlineMods.getVersion(name) == "")
                 {
                     string zip = historyDirectory + @"\" + ModManagement.GenerateRandomNumberString(10) + ".zip";
                     DownloadZipFile(link, zip);
@@ -89,7 +89,7 @@ namespace xnyu_debug_studio_mod_manager
                     installedOnlineMods.addMod(name, version, link);
                     File.WriteAllText(installedOnlineModsFile, installedOnlineMods.generateFile());
 
-                    ComboboxOnlineInstallFill();
+                    ComboboxOnlineUninstallFill();
                     MessageBox.Show("Mod installed!");
                 }
                 else
@@ -103,9 +103,9 @@ namespace xnyu_debug_studio_mod_manager
         {
             if (combobox_online_uninstall.SelectedIndex > -1)
             {
-                string name = combobox_online_install.SelectedItem.ToString();
-                string link = availableOnlineMods.getLink(name);
-                string version = availableOnlineMods.getVersion(name);
+                string name = combobox_online_uninstall.SelectedItem.ToString();
+                string link = installedOnlineMods.getLink(name);
+                string version = installedOnlineMods.getVersion(name);
                 if (version != "")
                 {
                     ModManagement.UninstallMod(name + "_" + version, historyDirectory);
@@ -230,6 +230,38 @@ namespace xnyu_debug_studio_mod_manager
             }
         }
 
+        private void button_online_updates_Click(object sender, EventArgs e)
+        {
+            List<string> modsToUpdate = new List<string>();
+            for (int i = 0; i < installedOnlineMods.mods.Count; i++)
+            {
+                for (int k = 0; k < availableOnlineMods.mods.Count; k++)
+                {
+                    if (installedOnlineMods.mods[i].name == availableOnlineMods.mods[k].name)
+                    {
+                        if (installedOnlineMods.mods[i].version != availableOnlineMods.mods[k].version)
+                        {
+                            DialogResult result = MessageBox.Show("There is a new version of the mod '" + installedOnlineMods.mods[i].name + "' available. Do you wish to update?\n\n!!!WARNING!!! Make a backup of your old mods scripts and settings, as they get deleted if you proceed.\n\nOld version: " + installedOnlineMods.mods[i].version + "\nNew version: " + availableOnlineMods.mods[k].version, "Update mod",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                ModManagement.UninstallMod(installedOnlineMods.mods[i].name + "_" + installedOnlineMods.mods[i].version, historyDirectory);
+                                string zip = historyDirectory + @"\" + ModManagement.GenerateRandomNumberString(10) + ".zip";
+                                DownloadZipFile(availableOnlineMods.mods[k].link, zip);
+                                ModManagement.InstallMod(zip, availableOnlineMods.mods[k].name + "_" + availableOnlineMods.mods[k].version, historyDirectory, true);
+                                installedOnlineMods.changeVersion(installedOnlineMods.mods[i].name, availableOnlineMods.mods[k].version);
+                                File.WriteAllText(installedOnlineModsFile, installedOnlineMods.generateFile());
+                                ComboboxOfflineUninstallFill();
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            MessageBox.Show("No updates for mods found!");
+        }
     }
 }
 

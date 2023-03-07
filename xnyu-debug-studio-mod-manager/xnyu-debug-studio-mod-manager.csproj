@@ -7,7 +7,7 @@
     <ProjectGuid>{D9A50A48-28A7-4E99-A338-A803FCD7065D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>xnyu_debug_studio_mod_manager</RootNamespace>
-    <AssemblyName>xnyu-debug-studio-mod-manager</AssemblyName>
+    <AssemblyName>xnyu-mod-manager</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

@@ -133,6 +133,7 @@
             this.button_online_updates.TabIndex = 11;
             this.button_online_updates.Text = "Updates";
             this.button_online_updates.UseVisualStyleBackColor = true;
+            this.button_online_updates.Click += new System.EventHandler(this.button_online_updates_Click);
             // 
             // textbox_local_install
             // 

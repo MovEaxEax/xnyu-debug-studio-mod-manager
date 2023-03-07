@@ -147,6 +147,13 @@ namespace xnyu_debug_studio_mod_manager
             return "";
         }
 
+        public string setVersion(string name, string version)
+        {
+            int index = mods.FindIndex((mod) => (mod.name == name));
+            if (index > -1) return mods[index].version;
+            return "";
+        }
+
         public string getLink(string name)
         {
             int index = mods.FindIndex((mod) => (mod.name == name));
