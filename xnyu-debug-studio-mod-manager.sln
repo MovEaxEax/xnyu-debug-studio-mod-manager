@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xnyu-debug-studio-mod-manager", "xnyu-debug-studio-mod-manager\xnyu-debug-studio-mod-manager.csproj", "{D9A50A48-28A7-4E99-A338-A803FCD7065D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9A50A48-28A7-4E99-A338-A803FCD7065D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A50A48-28A7-4E99-A338-A803FCD7065D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A50A48-28A7-4E99-A338-A803FCD7065D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A50A48-28A7-4E99-A338-A803FCD7065D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {02245616-BF19-4FED-88F8-53A443016595}
+	EndGlobalSection
+EndGlobal
