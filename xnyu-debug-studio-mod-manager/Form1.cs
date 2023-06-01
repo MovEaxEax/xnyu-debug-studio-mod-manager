@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.IO;
 using System.Net;
+using System.Net.NetworkInformation;
 
 namespace xnyu_debug_studio_mod_manager
 {
@@ -38,7 +39,10 @@ namespace xnyu_debug_studio_mod_manager
             System.Net.ServicePointManager.Expect100Continue = true;
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
-            approvedModsFileContent = await GetAvailableModsXML(approvedModsFileUrl);
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                approvedModsFileContent = await GetAvailableModsXML(approvedModsFileUrl);
+            }
 
             if (!File.Exists(installedOnlineModsFile)) File.WriteAllText(installedOnlineModsFile, "<mods>\n</mods>");
             if (!File.Exists(installedOfflineModsFile)) File.WriteAllText(installedOfflineModsFile, "<mods>\n</mods>");
