@@ -23,6 +23,8 @@ namespace xnyu_debug_studio_mod_manager
         static public string historyDirectory = Directory.GetCurrentDirectory() + @"\config\history";
         static public string installedOnlineModsFile = Directory.GetCurrentDirectory() + @"\config\ModsOnline.xml";
         static public string installedOfflineModsFile = Directory.GetCurrentDirectory() + @"\config\ModsOffline.xml";
+        static public string templatesDirectory = Directory.GetCurrentDirectory() + @"\templates";
+        static public string modsDirectory = Directory.GetCurrentDirectory() + @"\mods";
 
         static public XMLParser availableOnlineMods = null;
         static public XMLParser installedOnlineMods = null;
@@ -54,6 +56,11 @@ namespace xnyu_debug_studio_mod_manager
             ComboboxOnlineInstallFill();
             ComboboxOnlineUninstallFill();
             ComboboxOfflineUninstallFill();
+
+            // Create directories if not existing
+            if (!Directory.Exists(historyDirectory)) Directory.CreateDirectory(historyDirectory);
+            if (!Directory.Exists(templatesDirectory)) Directory.CreateDirectory(templatesDirectory);
+            if (!Directory.Exists(modsDirectory)) Directory.CreateDirectory(modsDirectory);
         }
 
         public static async Task<string> GetAvailableModsXML(string url)
